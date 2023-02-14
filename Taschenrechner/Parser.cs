@@ -16,7 +16,7 @@ namespace Taschenrechner
             Zeichenkette.Add('*');
             Zeichenkette.Add('/');
 
-            Console.WriteLine("Herzlich Willkommen!:");
+            Console.WriteLine("Herzlich Willkommen du Eimer!:");
             while (true)
             {
                 try
