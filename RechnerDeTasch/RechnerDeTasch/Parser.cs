@@ -21,7 +21,7 @@ namespace Taschenrechner
             {
                 try
                 {
-                    Console.WriteLine("Geben Sie bitte eine Zahl ein");
+                    Console.WriteLine("Geben Sie eine Zahl ein");
                     string Eingabe = Console.ReadLine();
                     char[] teile = Eingabe.ToArray();
 
