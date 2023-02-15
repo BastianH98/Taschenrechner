@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace Taschenrechner
 {
@@ -21,15 +23,24 @@ namespace Taschenrechner
             {
                 try
                 {
-                    Console.WriteLine("Geben Sie eine Zahl ein");
+                    Console.WriteLine("Geben Sie bitte eine Zahl ein");
                     string Eingabe = Console.ReadLine();
-                    char[] teile = Eingabe.ToArray();
+                    //Einbauen RegEx.
 
-                    double zahl1 = Convert.ToDouble(teile[0].ToString());
-                    string zeichen = teile[1].ToString();
-                    double zahl2 = Convert.ToDouble(teile[2].ToString());
+                    string pattern = @"\d{1,}(,\d{1,})?";
+                    MatchCollection zahlen = Regex.Matches(Eingabe, pattern);
 
-                    var (ergebnis, text) = Rechnen2(zahl1, zahl2, zeichen);
+                    string patternzeichen = @"(\+|\-|\*|\/)";
+                    MatchCollection zeichen = Regex.Matches(Eingabe, patternzeichen);
+
+                    double zahl1 = Convert.ToDouble(zahlen[0].Value);
+                    string zeichen1 = Convert.ToString(zeichen[0].Value);
+                    double zahl2 = Convert.ToDouble(zahlen[1].Value);
+
+                    //string zeichen = teile[1].ToString();
+                    //double zahl2 = Convert.ToDouble(teile[2].ToString());
+
+                    var (ergebnis, text) = Rechnen2(zahl1, zahl2, zeichen1);
 
                     Console.WriteLine(text);
                     Console.WriteLine(ergebnis);
@@ -38,7 +49,7 @@ namespace Taschenrechner
                 catch (Exception ex)
                 {
                     Console.WriteLine("Das war keine gültige Aufgabe");
-                }          
+                }
 
             }
 
