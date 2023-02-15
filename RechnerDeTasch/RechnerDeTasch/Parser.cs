@@ -39,12 +39,18 @@ namespace Taschenrechner
 
                     //string zeichen = teile[1].ToString();
                     //double zahl2 = Convert.ToDouble(teile[2].ToString());
-
                     var (ergebnis, text) = Rechnen2(zahl1, zahl2, zeichen1);
 
-                    Console.WriteLine(text);
-                    Console.WriteLine(ergebnis);
-
+                   
+                    if (zeichen1 == "/" && zahl2 == 0)
+                    {
+                        Console.WriteLine("Dies ist leider nicht möglich");
+                    }
+                    else
+                    {
+                        Console.WriteLine(text);
+                        Console.WriteLine(ergebnis);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -83,7 +89,7 @@ namespace Taschenrechner
             if (zeichen == "/")
             {
                 erg = zahl1 / zahl2;
-                text = "Der Quotient ist";
+                text = "Der Qutient ist";
             }
 
             return (erg, text);
